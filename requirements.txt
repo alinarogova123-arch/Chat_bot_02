@@ -4,3 +4,4 @@ google-cloud-dialogflow==2.47.0
 google-cloud-api-keys==0.8.0
 vk_api==11.10.0
 requests==2.34.0
+PySocks==1.7.1
