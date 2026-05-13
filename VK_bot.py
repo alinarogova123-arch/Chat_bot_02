@@ -1,4 +1,5 @@
 import random
+import os
 
 import vk_api
 from google.cloud import dialogflow
@@ -30,6 +31,8 @@ def echo(message, user_id, vk_api):
 def main():
     env = Env()
     env.read_env()
+    path = env.str("GOOGLE_APPLICATION_CREDENTIALS")
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = path
     vk_bot_token = env.str("VK_API_KEY")
     project_id = env.str("PROGECT_ID")
     language_code = "ru"
