@@ -2,6 +2,7 @@ import telebot
 from google.cloud import dialogflow
 from telebot import types
 from environs import Env
+from telebot import apihelper
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
@@ -19,6 +20,9 @@ def detect_intent_texts(project_id, session_id, text, language_code):
 def main():
     env = Env()
     env.read_env()
+    proxy_ip = env.str("PROXY")
+    proxy_url = f'socks5h://{proxy_ip}'
+    apihelper.proxy = {'https': proxy_url}
     tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
     project_id = env.str("PROGECT_ID")
     language_code = "ru"
