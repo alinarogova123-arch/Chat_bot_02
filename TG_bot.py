@@ -4,6 +4,7 @@ import logging
 import telebot
 from google.cloud import dialogflow
 from environs import Env
+from telebot import apihelper
 
 
 logger = logging.getLogger(__name__)
@@ -14,6 +15,9 @@ class MyLogsHandler(logging.Handler):
         log_entry = self.format(record)
         env = Env()
         env.read_env()
+        proxy_ip = env.str("PROXY")
+        proxy_url = f'socks5h://{proxy_ip}'
+        apihelper.proxy = {'https': proxy_url}
         chat_id = env.str("TELEGRAM_CHAT_ID")
         tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
         bot_logger = telebot.TeleBot(tg_bot_token)
@@ -37,6 +41,9 @@ def main():
     env.read_env()
     path_key = env.str("PATH_TO_CREDENTIALS")
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = path_key
+    proxy_ip = env.str("PROXY")
+    proxy_url = f'socks5h://{proxy_ip}'
+    apihelper.proxy = {'https': proxy_url}
     tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
     project_id = env.str("PROGECT_ID")
     language_code = "ru"
