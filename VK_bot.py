@@ -3,7 +3,6 @@ import os
 import logging
 
 import telebot
-from telebot import apihelper
 import vk_api
 from google.cloud import dialogflow
 from environs import Env
@@ -18,9 +17,6 @@ class MyLogsHandler(logging.Handler):
         log_entry = self.format(record)
         env = Env()
         env.read_env()
-        proxy_ip = env.str("PROXY")
-        proxy_url = f'socks5h://{proxy_ip}'
-        apihelper.proxy = {'https': proxy_url}
         chat_id = env.str("TELEGRAM_CHAT_ID")
         tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
         bot_logger = telebot.TeleBot(tg_bot_token)
