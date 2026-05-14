@@ -10,22 +10,22 @@ from environs import Env
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
-# class MyLogsHandler(logging.Handler):
-#     def emit(self, record):
-#         log_entry = self.format(record)
-#         env = Env()
-#         env.read_env()
-#         proxy_ip = env.str("PROXY")
-#         proxy_url = f'socks5h://{proxy_ip}'
-#         apihelper.proxy = {'https': proxy_url}
-#         chat_id = env.str("TELEGRAM_CHAT_ID")
-#         tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
-#         bot_logger = telebot.TeleBot(tg_bot_token)
-#         bot_logger.send_message(chat_id=chat_id, text=log_entry)
-#         print(log_entry)
+class MyLogsHandler(logging.Handler):
+    def emit(self, record):
+        log_entry = self.format(record)
+        env = Env()
+        env.read_env()
+        proxy_ip = env.str("PROXY")
+        proxy_url = f'socks5h://{proxy_ip}'
+        apihelper.proxy = {'https': proxy_url}
+        chat_id = env.str("TELEGRAM_CHAT_ID")
+        tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
+        bot_logger = telebot.TeleBot(tg_bot_token)
+        bot_logger.send_message(chat_id=chat_id, text=log_entry)
+        print(log_entry)
 
 
 def detect_intent_texts_and_fallback_flag(project_id, session_id, text, language_code):
@@ -73,10 +73,10 @@ def main():
 
 
 if __name__ == "__main__":
-    # logger.setLevel(logging.INFO)
-    # logger.addHandler(MyLogsHandler())
-    # try:
-    main()
-    # except Exception as e:
-    #     logger.error("Бот упал с ошибкой")
-    #     logger.exception(e)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(MyLogsHandler())
+    try:
+        main()
+    except Exception as e:
+        logger.error("Бот упал с ошибкой")
+        logger.exception(e)
