@@ -34,7 +34,6 @@
 - `PROGECT_ID` — ID вашего проекта Google Cloud.
 - `TELEGRAM_CHAT_ID` — ID вашего чата с ботом.
 - `PATH_TO_CREDENTIALS` — Путь к json файлу доступа.
-- `URL_PHRASES` — Ссылка на json файл с фразами для обучения.
 - `VK_API_KEY` — Токен вашего сообщества Вконтакте.
  
 
