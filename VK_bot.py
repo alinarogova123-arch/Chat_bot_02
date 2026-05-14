@@ -25,7 +25,6 @@ class MyLogsHandler(logging.Handler):
         tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
         bot_logger = telebot.TeleBot(tg_bot_token)
         bot_logger.send_message(chat_id=chat_id, text=log_entry)
-        print(log_entry)
 
 
 def detect_intent_texts_and_fallback_flag(project_id, session_id, text, language_code):
