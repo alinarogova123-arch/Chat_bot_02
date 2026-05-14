@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import pprint
 from environs import Env
@@ -25,19 +26,21 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 
 def main():
-	env = Env()
-	env.read_env()
-	display_name = "Устройство на работу"
-	url_for_get_phrases = env.str("URL_PHRASES")
-	response = requests.get(url_for_get_phrases)
-	response.raise_for_status()
-	intent_data = response.json().get(display_name)
+    env = Env()
+    env.read_env()
+    path_key = env.str("PATH_TO_CREDENTIALS")
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = path_key
 
-	project_id = env.str("PROGECT_ID")
-	training_phrases_parts = intent_data.get("questions")
-	message_texts = [intent_data.get("answer")]
-	create_intent(project_id, display_name, training_phrases_parts, message_texts)
+    with open("questions.json", "r", encoding='utf-8') as my_file:
+        intents = json.load(my_file)
+    
+    project_id = env.str("PROGECT_ID")
+    for key, value in intents.items():
+        display_name = key
+        message_texts = [value.get("answer")]
+        training_phrases_parts = value.get("questions")
+        create_intent(project_id, display_name, training_phrases_parts, message_texts)
 
 
 if __name__ == "__main__":
-	main()
+    main()
