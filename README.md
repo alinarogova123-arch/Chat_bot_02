@@ -10,16 +10,19 @@
 
 ## Запуск
 
-Для запуска бота у вас уже должен быть установлен Python 3, аккаунт Google, Телеграм бот и группа ВК.
+Для запуска бота у вас уже должны быть установлен Python 3, аккаунт Google, Телеграм бот и группа ВК.
 
 - Скачайте код.
 - Создайте проект Google Cloud на [https://console.cloud.google.com/].
-- Включите API Dialogflow на вашем гугл аккаунте
+- Включите API Dialogflow на вашем гугл аккаунте.
+- Включите API keys API на вашем гугл аккаунте.
 - Создайте Dialogflow агента на [https://dialogflow.cloud.google.com/] и укажите ID вашего проекта при создании агента.
 - Установите Google Cloud CLI и авторизуйтесь в ней с помощью своего аккаунта Google.
+- Выберете ваш проект командой `gcloud config set project ИДЕНТИФИКАТОР_ПРОЕКТА`
 - Запустите команду `gcloud auth application-default login --scopes=https://www.googleapis.com/auth/cloud-platform` для получения json файла доступа.
 - Установите зависимости командой `pip3 install -r requirements.txt`
 - Задайте переменные окружения.
+- Запустите скрипт `get_key.py` для получения API ключей.
 - Запустите обучение вашего Dialogflow агента командой `add_intent.py`
 - Запустите бота для Телеграм командой `python3 TG_bot.py`
 - Запустите бота для Вконтакте командой `python3 TG_bot.py`
