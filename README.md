@@ -2,7 +2,7 @@
 
 Бот поддержки для ответов на типичные вопросы.
 
-
+<img width="545" height="600" alt="demo_vk_bot" src="https://github.com/user-attachments/assets/5bebde2b-42d0-479a-9644-084a5aa58177" />
 
 Использует Dialogflow от Google для выбора нужных ответов на поступающие сообщения.
 
