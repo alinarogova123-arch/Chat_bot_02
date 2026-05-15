@@ -11,11 +11,6 @@ def create_api_key(project_id: str, suffix: str) -> Key:
     request.parent = f"projects/{project_id}/locations/global"
     request.key = key
     response = client.create_key(request=request).result()
-    print(f"Successfully created an API key: {response.name}")
-    print("key_string :", response.key_string)
-    print("uid :", response.uid)
-    print("display_name :", response.display_name)
-    print("create_time :", response.create_time)
 
     return response
 
