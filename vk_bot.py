@@ -40,7 +40,7 @@ def detect_intent_texts_and_fallback_flag(project_id, session_id, text, language
     return fulfillment_text, is_fallback
 
 
-def echo(message, user_id, vk_api):
+def send_message_to_vk_chat(message, user_id, vk_api):
     vk_api.messages.send(
         user_id=user_id,
         message=message,
@@ -68,7 +68,7 @@ def main():
                                                 language_code
                                             )
             if not is_fallback:
-                echo(fulfillment_text, event.user_id, vk)
+                send_message_to_vk_chat(fulfillment_text, event.user_id, vk)
 
 
 if __name__ == "__main__":
