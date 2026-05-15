@@ -18,9 +18,9 @@ def main():
     env.read_env()
     path_key = env.str("PATH_TO_CREDENTIALS")
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = path_key
-    # proxy_ip = env.str("PROXY")
-    # proxy_url = f'socks5h://{proxy_ip}'
-    # apihelper.proxy = {'https': proxy_url}
+    proxy_ip = env.str("PROXY")
+    proxy_url = f'socks5h://{proxy_ip}'
+    apihelper.proxy = {'https': proxy_url}
     tg_bot_token = env.str("TELEGRAM_BOT_API_KEY")
     project_id = env.str("PROGECT_ID")
     language_code = "ru"
