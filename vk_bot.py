@@ -60,15 +60,17 @@ def main():
     vk = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
-                                                project_id,
-                                                event.user_id,
-                                                event.text,
-                                                language_code
-                                            )
-            if not is_fallback:
-                send_message_to_vk_chat(fulfillment_text, event.user_id, vk)
+        if event.type != VkEventType.MESSAGE_NEW or not event.to_me:
+            continue
+        fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
+                                            project_id,
+                                            event.user_id,
+                                            event.text,
+                                            language_code
+                                        )
+        if is_fallback:
+            continue
+        send_message_to_vk_chat(fulfillment_text, event.user_id, vk)
 
 
 if __name__ == "__main__":
