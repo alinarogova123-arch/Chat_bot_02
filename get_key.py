@@ -1,3 +1,4 @@
+import random
 from environs import Env
 from google.cloud import api_keys_v2
 from google.cloud.api_keys_v2 import Key
@@ -19,7 +20,8 @@ def main():
     env = Env()
     env.read_env()
     project_id = env.str("PROGECT_ID")
-    create_api_key(project_id, "1")
+    random_display_name_suffix = random.randint(1,1000)
+    create_api_key(project_id, random_display_name_suffix)
 
 
 if __name__ == "__main__":
