@@ -38,7 +38,7 @@ def main():
         session_id = message.from_user.id
         fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
                                             project_id,
-                                            session_id,
+                                            f"tg-{session_id}",
                                             text,
                                             language_code
                                         )

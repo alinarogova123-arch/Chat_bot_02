@@ -42,7 +42,7 @@ def main():
             continue
         fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
                                             project_id,
-                                            event.user_id,
+                                            f"vk-{event.user_id}",
                                             event.text,
                                             language_code
                                         )
