@@ -40,10 +40,12 @@ def main():
     for event in longpoll.listen():
         if event.type != VkEventType.MESSAGE_NEW or not event.to_me:
             continue
+        session_id = f"vk-{event.user_id}"
+        text = event.text
         fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
                                             project_id,
-                                            f"vk-{event.user_id}",
-                                            event.text,
+                                            session_id,
+                                            text,
                                             language_code
                                         )
         if is_fallback:

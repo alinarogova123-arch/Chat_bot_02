@@ -35,10 +35,10 @@ def main():
     @bot.message_handler(func=lambda message: True)
     def handle_message(message):
         text = message.text
-        session_id = message.from_user.id
+        session_id = f"tg-{message.from_user.id}"
         fulfillment_text, is_fallback = detect_intent_texts_and_fallback_flag(
                                             project_id,
-                                            f"tg-{session_id}",
+                                            session_id,
                                             text,
                                             language_code
                                         )
